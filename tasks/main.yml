@@ -70,11 +70,9 @@
    group: root
    mode: 0664
 
-- name: Remove mariadb_datadir
-  file: 
-    path: /var/lib/mysql 
-    state: absent   
-
+- name: Empty mariadb_datadir
+  command: rm -rf /var/lib/mysql/*
+  
 - name: Set permissions on /var/log/mysql
   file:
     path: /var/log/mysql
