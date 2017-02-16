@@ -72,27 +72,14 @@
 
 - name: Empty mariadb_datadir
   command: rm -rf /var/lib/mysql/*
-  
-- name: Set permissions on /var/log/mysql
-  file:
-    path: /var/log/mysql
-    recurse: yes
-    state: directory
-    owner: mysql
-    group: root
-    mode: 0777   
 
-- name: Create directories
+- name: Create setup directory
   file:
-    path: "{{ item }}"
+    path: /setup
     state: directory
     owner: mysql
     group: root
     mode: 0775
-  with_items:
-  - /var/lib/mysql
-  - /setup
-  - /var/lib/mysql
 
 - name: Copy startup files
   copy:
